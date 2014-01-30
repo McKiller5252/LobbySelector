@@ -1,4 +1,4 @@
-name: CustomFireworkGui
+name: LobbySelector
 version: 1.0
-main: me.McKiller5252.customfireworksgui.CustomFireworkGui
-description: Allows you to customize fireworks.
+main: me.McKiller5252.lobbyselector.LobbySelector
+description: Allows you to teleport to diffrent lobbies.

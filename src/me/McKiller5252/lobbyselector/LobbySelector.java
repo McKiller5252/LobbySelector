@@ -7,10 +7,11 @@ import me.McKiller5252.lobbyselector.gui.LobbySelectorGUI;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerDropItemEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
@@ -19,13 +20,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public class LobbySelector extends JavaPlugin implements Listener {
 	
-	private static LobbySelectorGUI cfwgui;
+	private  LobbySelectorGUI lsgui;
 	
 	public void onEnable(){
 		
-		cfwgui = new LobbySelectorGUI(this);
+		getLogger().info("LobbySelector Plugin Enabled");
+		lsgui = new LobbySelectorGUI(this);
 		Bukkit.getServer().getPluginManager().registerEvents(this, this);
 		
+	}
+	
+	public void onDisable(){
+		 getLogger().info("LobbySelctor Plugin Disabled");
 	}
 	
 	@EventHandler
@@ -34,31 +40,45 @@ public class LobbySelector extends JavaPlugin implements Listener {
         if (p.getItemInHand() != null) {
             ItemStack item = p.getItemInHand();
             if (item.getType() == Material.COMPASS) { 
-            	cfwgui.show(e.getPlayer()); 
+            	lsgui.show(e.getPlayer()); 
                 }
             }
         }
+	
+	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+		 
+        if(sender instanceof Player) {
+            Player p = (Player) sender;
+ 
+            if(cmd.getName().equalsIgnoreCase("ls")) {
+            	p.sendMessage(ChatColor.RED + "You gave yourself the " + ChatColor.YELLOW + " LobbySelctor Tool");
+            	p.getPlayer().getInventory().addItem(new ItemStack(Material.COMPASS, 1));
+            }
+        }
+        return true;
+    }
+	
 	 
-	@EventHandler
-     public void onDrop(PlayerDropItemEvent event) {
-           if (event.getItemDrop().getItemStack() != null){
-        	   event.setCancelled(true);
-           }
-         }
+	//@EventHandler
+   //  public void onDrop(PlayerDropItemEvent event) {
+      //     if (event.getItemDrop().getItemStack() != null){
+        //	   event.setCancelled(true);
+        //   }
+       //  }
 	 
 	@EventHandler
 	 public void onPlayerJoin(PlayerJoinEvent e){
 		 Player player = e.getPlayer();
-		 if (!player.getInventory().contains(Material.FIREWORK))
+		 if (!player.getInventory().contains(Material.COMPASS))
 		 {
-			 player.setItemInHand(new ItemStack(Material.FIREWORK, (short) 1));
+			 player.setItemInHand(new ItemStack(Material.COMPASS, (short) 1));
 			 ItemStack spawnItem = player.getItemInHand();
 			 ItemMeta im =  spawnItem.getItemMeta();
 			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lobby Selector");
 			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector"));
 			 spawnItem.setItemMeta(im);
 			 e.getPlayer().getInventory().clear();
-			 e.getPlayer().getInventory().setItem(0, spawnItem);
+			 e.getPlayer().getInventory().setItem(8, spawnItem);
 			 }
 		}
 }
