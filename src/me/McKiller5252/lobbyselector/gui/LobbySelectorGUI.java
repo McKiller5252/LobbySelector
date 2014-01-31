@@ -21,11 +21,12 @@ public class LobbySelectorGUI implements Listener {
 	private Inventory inv;
 	private Inventory swinv;
 	private Inventory twinv;
-	//private Inventory bwinv;
+	private Inventory bwinv;
 	
 	private ItemStack a, b, c;
 	private ItemStack d, e, f;
 	private ItemStack g, h, i, j, k;
+	private ItemStack l, q, n, o, p;
 	
 	 World spawnWorld = Bukkit.getServer().getWorld("world");
 	 World buildWorld = Bukkit.getServer().getWorld("BuildWorld");
@@ -40,7 +41,9 @@ public class LobbySelectorGUI implements Listener {
 	 Location test3 = new Location(testWorld,  0.5, 90.5 ,0.5);   
 	 
 	 Location build = new Location(buildWorld, 0.0, 100.5, 0.0);
-	 Location build1 = new Location(buildWorld, -10.0, 100.0, 100.0);
+	 Location build1 = new Location(buildWorld, -650.0, 100.0, -962.0);
+	 Location build2 = new Location(buildWorld, -120.0, 100.0, 1020.0);
+	 Location build3 = new Location(buildWorld, -1220.0, 100.0, 1010.0);
 
 
 	public LobbySelectorGUI(Plugin m) {
@@ -83,6 +86,22 @@ public class LobbySelectorGUI implements Listener {
 		twinv.setItem(3, j);
 		twinv.setItem(8, k);
 		
+		
+		//Build world panel
+		bwinv = Bukkit.getServer().createInventory(null, 9, ChatColor.DARK_RED + "Build World Teleport Selector");
+		
+		l = createItem(Material.REDSTONE, ChatColor.DARK_AQUA + "Teleport To Build World");
+		q = createItem(Material.DIAMOND, ChatColor.GOLD + "Regium");
+		n = createItem(Material.IRON_INGOT, ChatColor.GOLD + "Test 2");
+		o = createItem(Material.BEACON, ChatColor.GOLD + "Test 3");
+		p = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
+		
+		bwinv.setItem(0, l);
+		bwinv.setItem(1, q);
+		bwinv.setItem(2, n);
+		bwinv.setItem(3, o);
+		bwinv.setItem(8, p);
+		
 		Bukkit.getServer().getPluginManager().registerEvents(this, m);
 	}
 	
@@ -123,9 +142,7 @@ public class LobbySelectorGUI implements Listener {
 		if (e.getCurrentItem().getType() == Material.LOG){
 			
 			//Build world inv
-			p.closeInventory();
-            p.sendMessage(ChatColor.GREEN + "Teleporting to BuildWorld . . .");
-			p.teleport(build);
+			p.openInventory(bwinv);
 			
 		}
 		if (e.getCurrentItem().getType() == Material.BREAD){
@@ -142,14 +159,14 @@ public class LobbySelectorGUI implements Listener {
 			p.closeInventory();
 			p.teleport(build1);
 		}
-		if (e.getCurrentItem().getType() == Material.RED_ROSE){
+		if (e.getCurrentItem().getType() == Material.APPLE){
 			
 			//Testworld location3
 			p.closeInventory();
 			p.teleport(test3);
 		}
 
-		if (e.getCurrentItem().getType() == Material.APPLE){
+		if (e.getCurrentItem().getType() == Material.RED_ROSE){
 		
 			//Testworld location2
 			p.closeInventory();
@@ -177,6 +194,36 @@ public class LobbySelectorGUI implements Listener {
 			
 		   // Back
 			p.openInventory(inv);
+			
+		}
+		
+		if (e.getCurrentItem().getType() == Material.REDSTONE){
+		
+			p.closeInventory();
+			p.sendMessage(ChatColor.GREEN + "Teleporting to BuildWorld . . .");
+			p.teleport(build);
+			
+		}
+		
+		if (e.getCurrentItem().getType() == Material.DIAMOND){
+			
+			//Regium
+			p.closeInventory();
+			p.teleport(build1);
+			
+		}
+		
+		if (e.getCurrentItem().getType() == Material.IRON_INGOT){
+			
+			p.closeInventory();
+			p.teleport(build2);
+			
+		}
+		
+		if (e.getCurrentItem().getType() == Material.BEACON){
+			
+			p.closeInventory();
+			p.teleport(build3);
 			
 		}
 		else {
