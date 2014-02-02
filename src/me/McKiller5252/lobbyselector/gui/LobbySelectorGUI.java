@@ -33,7 +33,8 @@ public class LobbySelectorGUI implements Listener {
 	 World testWorld = Bukkit.getServer().getWorld("TestWorld");
 	 
 	 
-	 Location spawn = new Location(spawnWorld, 32.5, 64.5, 166.5);
+	 Location spawn = new Location(spawnWorld, -32.5, 64.5, 166.5);
+	 Location spawn1 = new Location(spawnWorld, 32.5, 64.5, 166.5);
 	 
 	 Location test = new Location(testWorld, 106.5, 78.5, 92.5);
 	 Location test1 = new Location(testWorld, 244.5, 128.5, 234.5);   
@@ -157,7 +158,7 @@ public class LobbySelectorGUI implements Listener {
 			
 			//Buildworld location
 			p.closeInventory();
-			p.teleport(build1);
+			p.teleport(spawn1);
 		}
 		if (e.getCurrentItem().getType() == Material.APPLE){
 			

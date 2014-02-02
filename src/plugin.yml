@@ -2,3 +2,9 @@ name: LobbySelector
 version: 1.0
 main: me.McKiller5252.lobbyselector.LobbySelector
 description: Allows you to teleport to diffrent lobbies.
+commands:
+   ls:
+      description: This will give you the LobbySelector
+      usage: /ls
+      permission: LobbySelector.ls
+      permission-message: You don't have <permission>
