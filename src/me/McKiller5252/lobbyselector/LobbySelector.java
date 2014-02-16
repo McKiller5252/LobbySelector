@@ -1,7 +1,6 @@
 package me.McKiller5252.lobbyselector;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.Arrays;
 
 import me.McKiller5252.lobbyselector.gui.LobbySelectorGUI;
 
@@ -54,7 +53,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
         if(sender instanceof Player) {
             Player p = (Player) sender;
             if(cmd.getName().equalsIgnoreCase("ls")) {
-            	p.sendMessage(ChatColor.GOLD + "You have gave yourself the " + ChatColor.YELLOW + " LobbySelctor Tool");
+            	p.sendMessage(ChatColor.GOLD + "You have given yourself the " + ChatColor.YELLOW + " LobbySelector Tool");
             	p.getInventory().setItem(8, lobbySelector());
             }
         }
@@ -69,9 +68,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
             spawnItem = new ItemStack(Material.COMPASS);
             im = spawnItem.getItemMeta();
             im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lobby Selector");
-            List<String> lore = new ArrayList<String>();
-            lore.add(ChatColor.AQUA + "Right click to open Lobby Selector");
-            im.setLore(lore);
+            im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector"));
             spawnItem.setItemMeta(im);
            
         return spawnItem;
@@ -81,17 +78,13 @@ public class LobbySelector extends JavaPlugin implements Listener {
 	@EventHandler
 	 public void join(PlayerJoinEvent e){
 		 Player player = e.getPlayer();
-		 if (!player.getInventory().contains(Material.COMPASS))
-		 {
-			 player.setItemInHand(new ItemStack(Material.COMPASS, (short) 1));
-			 ItemStack spawnItem = player.getItemInHand();
+		 if (!player.getInventory().contains(Material.COMPASS)){
+			 ItemStack spawnItem = new ItemStack(Material.COMPASS);
 			 ItemMeta im =  spawnItem.getItemMeta();
 			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lobby Selector");
-			 List<String> lore = new ArrayList<String>();
-			 lore.add(ChatColor.AQUA + "Right click to open Lobby Selector");
-			 lore.add(ChatColor.WHITE + "If you lose the Lobby Selector, Type /ls.");
+			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector", ChatColor.GRAY + "If you lose the Lobby Selector ", ChatColor.GRAY + "Type /ls "));
 			 spawnItem.setItemMeta(im);
-			 e.getPlayer().getInventory().setItem(8, spawnItem);
+			 player.getInventory().setItem(8, spawnItem);
 			 }
 		}
 }

@@ -39,7 +39,7 @@ public class LobbySelectorGUI implements Listener {
 	 Location test = new Location(testWorld, 106.5, 78.5, 92.5);
 	 Location test1 = new Location(testWorld, 244.5, 128.5, 234.5);   
 	 Location test2 = new Location(testWorld,  286.5, 50.5 ,134.5);
-	 Location test3 = new Location(testWorld,  0.5, 90.5 ,0.5);   
+	 Location test3 = new Location(testWorld,  206.5, 65.5 ,114.5);   
 	 
 	 Location build = new Location(buildWorld, 0.0, 100.5, 0.0);
 	 Location build1 = new Location(buildWorld, -650.0, 100.0, -962.0);
@@ -164,7 +164,7 @@ public class LobbySelectorGUI implements Listener {
 			
 			//Testworld location3
 			p.closeInventory();
-			p.teleport(test3);
+			p.teleport(test);
 		}
 
 		if (e.getCurrentItem().getType() == Material.RED_ROSE){
@@ -186,7 +186,7 @@ public class LobbySelectorGUI implements Listener {
 			//Testworld location
 			p.closeInventory();
 			p.sendMessage(ChatColor.GREEN + "Teleporting to TestWorld . . .");
-			p.teleport(test);
+			p.teleport(test3);
 			
 		}
 		
