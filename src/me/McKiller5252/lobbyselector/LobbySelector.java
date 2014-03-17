@@ -4,7 +4,6 @@ import java.util.Arrays;
 
 import me.McKiller5252.lobbyselector.gui.LobbySelectorGUI;
 
-import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -27,7 +26,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
 		
 		getLogger().info("LobbySelector Plugin Enabled");
 		lsgui = new LobbySelectorGUI(this);
-		Bukkit.getServer().getPluginManager().registerEvents(this, this);
+		getServer().getPluginManager().registerEvents(this, this);
 		
 	}
 	

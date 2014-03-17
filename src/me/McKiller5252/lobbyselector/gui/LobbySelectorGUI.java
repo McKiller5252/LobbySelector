@@ -25,26 +25,24 @@ public class LobbySelectorGUI implements Listener {
 	
 	private ItemStack a, b, c;
 	private ItemStack d, e, f;
-	private ItemStack g, h, i, j, k;
-	private ItemStack l, q, n, o, p;
+	private ItemStack g, h, i, k;
+	private ItemStack l, q, p, r;
 	
-	 World spawnWorld = Bukkit.getServer().getWorld("world");
-	 World buildWorld = Bukkit.getServer().getWorld("BuildWorld");
+	 World spawnWorld = Bukkit.getServer().getWorld("SpawnWorld");
+	 World buildWorld = Bukkit.getServer().getWorld("BuildWorldOld");
 	 World testWorld = Bukkit.getServer().getWorld("TestWorld");
 	 
 	 
-	 Location spawn = new Location(spawnWorld, -32.5, 64.5, 166.5);
-	 Location spawn1 = new Location(spawnWorld, 32.5, 64.5, 166.5);
+	 Location spawn = new Location(spawnWorld, -7 ,64 ,160, 90, 0);
+	 Location spawn1 = new Location(spawnWorld,  -20, 62 ,151, 179, 0);
+	 Location spawn2 = new Location(spawnWorld, -20, 62 ,169);
 	 
-	 Location test = new Location(testWorld, 106.5, 78.5, 92.5);
-	 Location test1 = new Location(testWorld, 244.5, 128.5, 234.5);   
-	 Location test2 = new Location(testWorld,  286.5, 50.5 ,134.5);
-	 Location test3 = new Location(testWorld,  206.5, 65.5 ,114.5);   
+	 Location test = new Location(testWorld, 226, 61, -87);
+	 Location test1 = new Location(testWorld, 48, 135, 168);   
+	 Location test3 = new Location(testWorld,  112, 71, 88);   
 	 
-	 Location build = new Location(buildWorld, 0.0, 100.5, 0.0);
+	 Location build = new Location(buildWorld,  0, 65, 0);
 	 Location build1 = new Location(buildWorld, -650.0, 100.0, -962.0);
-	 Location build2 = new Location(buildWorld, -120.0, 100.0, 1020.0);
-	 Location build3 = new Location(buildWorld, -1220.0, 100.0, 1010.0);
 
 
 	public LobbySelectorGUI(Plugin m) {
@@ -65,11 +63,13 @@ public class LobbySelectorGUI implements Listener {
 		swinv = Bukkit.getServer().createInventory(null, 9, ChatColor.DARK_RED + "Spawn World Teleport Selector");
 		
 		d = createItem(Material.BREAD, ChatColor.DARK_AQUA + "Teleport To Spawn World");
-		e = createItem(Material.BLAZE_ROD, ChatColor.GOLD + "Location 1");
+		e = createItem(Material.BLAZE_ROD, ChatColor.GOLD + "Member Hall");
+		r = createItem(Material.BAKED_POTATO, ChatColor.GOLD + "Tour");
 		f = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
 		
 		swinv.setItem(0, d);
 		swinv.setItem(1, e);
+		swinv.setItem(2, r);
 		swinv.setItem(8, f);
 		
 		//Test World Panel
@@ -78,13 +78,11 @@ public class LobbySelectorGUI implements Listener {
 		g = createItem(Material.REDSTONE_TORCH_ON, ChatColor.DARK_AQUA + "Teleport To Test World");
 		h = createItem(Material.APPLE, ChatColor.GOLD + "Mount Netherest");
 		i = createItem(Material.CLAY_BALL, ChatColor.GOLD + "Forlorn");
-		j = createItem(Material.RED_ROSE, ChatColor.GOLD + "Crypt");
 		k = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
 		
 		twinv.setItem(0, g);
 		twinv.setItem(1, h);
 		twinv.setItem(2, i);
-		twinv.setItem(3, j);
 		twinv.setItem(8, k);
 		
 		
@@ -93,14 +91,10 @@ public class LobbySelectorGUI implements Listener {
 		
 		l = createItem(Material.REDSTONE, ChatColor.DARK_AQUA + "Teleport To Build World");
 		q = createItem(Material.DIAMOND, ChatColor.GOLD + "Regium");
-		n = createItem(Material.IRON_INGOT, ChatColor.GOLD + "Test 2");
-		o = createItem(Material.BEACON, ChatColor.GOLD + "Test 3");
 		p = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
 		
 		bwinv.setItem(0, l);
 		bwinv.setItem(1, q);
-		bwinv.setItem(2, n);
-		bwinv.setItem(3, o);
 		bwinv.setItem(8, p);
 		
 		Bukkit.getServer().getPluginManager().registerEvents(this, m);
@@ -166,14 +160,6 @@ public class LobbySelectorGUI implements Listener {
 			p.closeInventory();
 			p.teleport(test);
 		}
-
-		if (e.getCurrentItem().getType() == Material.RED_ROSE){
-		
-			//Testworld location2
-			p.closeInventory();
-			p.teleport(test2);
-			
-		}
 		if (e.getCurrentItem().getType() == Material.CLAY_BALL){
 			
 			//Testworld location1
@@ -214,17 +200,10 @@ public class LobbySelectorGUI implements Listener {
 			
 		}
 		
-		if (e.getCurrentItem().getType() == Material.IRON_INGOT){
+		if (e.getCurrentItem().getType() == Material.BAKED_POTATO){
 			
 			p.closeInventory();
-			p.teleport(build2);
-			
-		}
-		
-		if (e.getCurrentItem().getType() == Material.BEACON){
-			
-			p.closeInventory();
-			p.teleport(build3);
+			p.teleport(spawn2);
 			
 		}
 		else {
