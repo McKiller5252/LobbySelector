@@ -25,21 +25,15 @@ public class LobbySelectorGUI implements Listener {
 	
 	private ItemStack a, b, c;
 	private ItemStack d, e, f;
-	private ItemStack g, h, i, k;
 	private ItemStack l, q, p, r;
 	
 	 World spawnWorld = Bukkit.getServer().getWorld("SpawnWorld");
 	 World buildWorld = Bukkit.getServer().getWorld("BuildWorldOld");
-	 World testWorld = Bukkit.getServer().getWorld("TestWorld");
 	 
 	 
 	 Location spawn = new Location(spawnWorld, -7 ,64 ,160, 90, 0);
 	 Location spawn1 = new Location(spawnWorld,  -20, 62 ,151, 179, 0);
 	 Location spawn2 = new Location(spawnWorld, -20, 62 ,169);
-	 
-	 Location test = new Location(testWorld, 226, 61, -87);
-	 Location test1 = new Location(testWorld, 48, 135, 168);   
-	 Location test3 = new Location(testWorld,  112, 71, 88);   
 	 
 	 Location build = new Location(buildWorld,  0, 65, 0);
 	 Location build1 = new Location(buildWorld, -650.0, 100.0, -962.0);
@@ -72,19 +66,7 @@ public class LobbySelectorGUI implements Listener {
 		swinv.setItem(2, r);
 		swinv.setItem(8, f);
 		
-		//Test World Panel
-		twinv = Bukkit.getServer().createInventory(null, 9, ChatColor.DARK_RED + "Test World Teleport Selector");
-		
-		g = createItem(Material.REDSTONE_TORCH_ON, ChatColor.DARK_AQUA + "Teleport To Test World");
-		h = createItem(Material.APPLE, ChatColor.GOLD + "Mount Netherest");
-		i = createItem(Material.CLAY_BALL, ChatColor.GOLD + "Forlorn");
-		k = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
-		
-		twinv.setItem(0, g);
-		twinv.setItem(1, h);
-		twinv.setItem(2, i);
-		twinv.setItem(8, k);
-		
+	
 		
 		//Build world panel
 		bwinv = Bukkit.getServer().createInventory(null, 9, ChatColor.DARK_RED + "Build World Teleport Selector");
@@ -154,29 +136,6 @@ public class LobbySelectorGUI implements Listener {
 			p.closeInventory();
 			p.teleport(spawn1);
 		}
-		if (e.getCurrentItem().getType() == Material.APPLE){
-			
-			//Testworld location3
-			p.closeInventory();
-			p.teleport(test);
-		}
-		if (e.getCurrentItem().getType() == Material.CLAY_BALL){
-			
-			//Testworld location1
-			p.closeInventory();
-			p.teleport(test1);
-			
-		}
-		if (e.getCurrentItem().getType() == Material.REDSTONE_TORCH_ON){
-			
-			//Testworld location
-			p.closeInventory();
-			p.sendMessage(ChatColor.GREEN + "Teleporting to TestWorld . . .");
-			p.teleport(test3);
-			
-		}
-		
-		
 		if (e.getCurrentItem().getType() == Material.ARROW){
 			
 		   // Back
