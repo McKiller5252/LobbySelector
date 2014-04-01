@@ -51,7 +51,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
 
         if(sender instanceof Player) {
             Player p = (Player) sender;
-            if(cmd.getName().equalsIgnoreCase("ls")) {
+            if(cmd.getName().equalsIgnoreCase("ls") && p.hasPermission("LobbySelector.ls")) {
             	p.sendMessage(ChatColor.GOLD + "You have given yourself the " + ChatColor.YELLOW + " LobbySelector Tool");
             	p.getInventory().setItem(8, lobbySelector());
             }

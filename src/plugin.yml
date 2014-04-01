@@ -1,4 +1,4 @@
-name: LobbySelector
+name: HubLobbySelector
 version: 1.0
 author: Killer5252
 main: me.McKiller5252.lobbyselector.LobbySelector
@@ -9,3 +9,10 @@ commands:
       usage: /ls
       permission: LobbySelector.ls
       permission-message: You don't have permission to use this command.
+      
+permissions:
+   LobbySelector.builder:
+    description: yolo sweg
+   
+   LobbySelector.architect:
+    description: sweg yolo
