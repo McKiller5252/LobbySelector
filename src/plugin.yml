@@ -11,8 +11,11 @@ commands:
       permission-message: You don't have permission to use this command.
       
 permissions:
-   LobbySelector.builder:
-    description: yolo sweg
-   
-   LobbySelector.architect:
-    description: sweg yolo
+   LobbySelector.*:
+    children:
+      LobbySelector.builder: true
+      LobbySelector.architect: true
+    LobbySelector.builder:
+       default: true
+    LobbySelector.architect:
+       default: true

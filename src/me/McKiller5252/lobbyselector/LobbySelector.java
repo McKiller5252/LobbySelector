@@ -37,7 +37,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerClick(PlayerInteractEvent e){
 		Player p = e.getPlayer();
-		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
+		if(e.getAction() == Action.RIGHT_CLICK_BLOCK | e.getAction() == Action.RIGHT_CLICK_AIR){
         if (p.getItemInHand() != null) {
             ItemStack item = p.getItemInHand();
             if (item.getType() == Material.COMPASS) { 
@@ -66,7 +66,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
         ItemMeta im;
             spawnItem = new ItemStack(Material.COMPASS);
             im = spawnItem.getItemMeta();
-            im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lobby Selector");
+            im.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Lobby Selector");
             im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector"));
             spawnItem.setItemMeta(im);
            
@@ -80,7 +80,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
 		 if (!player.getInventory().contains(Material.COMPASS)){
 			 ItemStack spawnItem = new ItemStack(Material.COMPASS);
 			 ItemMeta im =  spawnItem.getItemMeta();
-			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Lobby Selector");
+			 im.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Lobby Selector (Right Click)");
 			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector", ChatColor.GRAY + "If you lose the Lobby Selector ", ChatColor.GRAY + "Type /ls "));
 			 spawnItem.setItemMeta(im);
 			 player.getInventory().setItem(8, spawnItem);

@@ -59,7 +59,7 @@ public class LobbySelectorGUI implements Listener {
 		
 		d = createItem(Material.BREAD, ChatColor.DARK_AQUA + "Teleport To Spawn");
 		e = createItem(Material.BLAZE_ROD, ChatColor.GOLD + "Member Hall");
-		r = createItem(Material.BAKED_POTATO, ChatColor.GOLD + "Tour");
+		r = createItem(Material.BAKED_POTATO, ChatColor.GOLD + "Tutorial");
 		f = createItem(Material.ARROW, ChatColor.BLUE + "Go Back");
 		
 		swinv.setItem(0, d);
@@ -160,8 +160,8 @@ public class LobbySelectorGUI implements Listener {
 		
 			//Plot Inv
 			p.closeInventory();
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Plots . . .");
-			p.performCommand("mw goto plotworld");
+			p.sendMessage(ChatColor.GREEN + "Teleporting to Recruit Plots . . .");
+			p.performCommand("mv tp plotworld");
 			
 		}
 		if(e.getCurrentItem().getType() == Material.DIAMOND_SWORD){
@@ -187,10 +187,10 @@ public class LobbySelectorGUI implements Listener {
 			//Builder Inv
 			p.closeInventory();
 			if(p.hasPermission("LobbySelector.builder")){
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Builder . . .");
+			p.sendMessage(ChatColor.GREEN + "Teleporting to Builder Plots . . .");
 			p.performCommand("mv tp builderworld");
 			}else {
-				p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Recuit to go here!");
+				p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Recruit to go here!");
 			}
 		}
 		if (e.getCurrentItem().getType() == Material.QUARTZ_BLOCK){
@@ -205,10 +205,10 @@ public class LobbySelectorGUI implements Listener {
 			//Architect inv
 			p.closeInventory();
 			if(p.hasPermission("LobbySelector.architect")){
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Architect . . .");
+			p.sendMessage(ChatColor.GREEN + "Teleporting to Architect Plots . . .");
 			p.performCommand("mv tp architectworld");
 		  }else {
-			  p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Builder And Recuit to go here!");
+			  p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Builder And Recruit to go here!");
 		  }
 		}
 		if (e.getCurrentItem().getType() == Material.ARROW){
