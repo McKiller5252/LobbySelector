@@ -1,11 +1,8 @@
 package me.McKiller5252.lobbyselector.gui;
 
-
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.Location;
 import org.bukkit.Material;
-import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -30,14 +27,8 @@ public class LobbySelectorGUI implements Listener {
 	private Inventory arcinv;
 	
 	private ItemStack a, b, c, h, i, j, k,  g, d, e, f, l, p, r, s, t;
-	
-	 World spawnWorld = Bukkit.getServer().getWorld("SpawnWorld");
-	 
-	 //Spawn
-	 Location spawn = new Location(spawnWorld, -7 ,64 ,160, 90, 0);
-	 Location spawn1 = new Location(spawnWorld,  -20, 62 ,151, 179, 0);
-	 Location spawn2 = new Location(spawnWorld, -20, 62 ,169);
 
+	
 	public LobbySelectorGUI(Plugin m) {
 		
 		//Main Inv
@@ -135,20 +126,20 @@ public class LobbySelectorGUI implements Listener {
 			//Spawn Inv
 			p.closeInventory();
             p.sendMessage(ChatColor.GREEN + "Teleporting to Spawn . . .");
-			p.teleport(spawn);
+			p.performCommand("warp spawn");
 			
 		}
 		if (e.getCurrentItem().getType() == Material.BLAZE_ROD){
 			
 			//Spawn Inv
 			p.closeInventory();
-			p.teleport(spawn1);
+			p.performCommand("warp members");
 		}
 		if (e.getCurrentItem().getType() == Material.BAKED_POTATO){
 			
 			//Spawn Inv
 			p.closeInventory();
-			p.teleport(spawn2);
+			p.performCommand("warp tutorials");
 			
 		}
 		if(e.getCurrentItem().getType() == Material.STONE){
@@ -160,20 +151,20 @@ public class LobbySelectorGUI implements Listener {
 		
 			//Plot Inv
 			p.closeInventory();
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Recruit Plots . . .");
-			p.performCommand("mv tp plotworld");
+			p.performCommand("warp Rplot");
 			
 		}
 		if(e.getCurrentItem().getType() == Material.DIAMOND_SWORD){
 			
 			//Plot Inv
 			p.performCommand("plotme auto");
+			p.closeInventory();
 		}
 		if(e.getCurrentItem().getType() == Material.WOOD_DOOR){
 			
 			//Plot Inv
 			p.performCommand("plotme home");
-			
+			p.closeInventory();
 		}
 		if (e.getCurrentItem().getType() == Material.LOG){
 			
@@ -187,8 +178,7 @@ public class LobbySelectorGUI implements Listener {
 			//Builder Inv
 			p.closeInventory();
 			if(p.hasPermission("LobbySelector.builder")){
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Builder Plots . . .");
-			p.performCommand("mv tp builderworld");
+			p.performCommand("warp Bplot");
 			}else {
 				p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Recruit to go here!");
 			}
@@ -205,8 +195,7 @@ public class LobbySelectorGUI implements Listener {
 			//Architect inv
 			p.closeInventory();
 			if(p.hasPermission("LobbySelector.architect")){
-			p.sendMessage(ChatColor.GREEN + "Teleporting to Architect Plots . . .");
-			p.performCommand("mv tp architectworld");
+			p.performCommand("warp Aplot");
 		  }else {
 			  p.sendMessage(ChatColor.RED + "" + ChatColor.BOLD + "You must first pass Builder And Recruit to go here!");
 		  }

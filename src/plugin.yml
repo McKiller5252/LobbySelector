@@ -16,6 +16,6 @@ permissions:
       LobbySelector.builder: true
       LobbySelector.architect: true
     LobbySelector.builder:
-       default: true
+       default: op
     LobbySelector.architect:
-       default: true
+       default: op

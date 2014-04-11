@@ -4,6 +4,7 @@ import java.util.Arrays;
 
 import me.McKiller5252.lobbyselector.gui.LobbySelectorGUI;
 
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -21,6 +22,14 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class LobbySelector extends JavaPlugin implements Listener {
 	
 	private  LobbySelectorGUI lsgui;
+	
+	public ChatColor sColor = ChatColor.GRAY;
+	public ChatColor pColor = ChatColor.GOLD;
+	public ChatColor dColor = ChatColor.YELLOW;
+	
+	public String pre = ChatColor.YELLOW + "[" + ChatColor.GOLD + "XaeusNetwork" + ChatColor.YELLOW + "] ";
+	public String pre1 = sColor + "" + ChatColor.STRIKETHROUGH + "--------------------" + ChatColor.YELLOW + "[" + ChatColor.GOLD + "LobbySelector" + ChatColor.YELLOW + "]" + sColor + "" + ChatColor.STRIKETHROUGH + "-------------------";
+	public String pre2 = sColor + "" + ChatColor.STRIKETHROUGH + "-----------------------------------------------------";
 	
 	public void onEnable(){
 		
@@ -48,17 +57,29 @@ public class LobbySelector extends JavaPlugin implements Listener {
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-
-        if(sender instanceof Player) {
+		if(sender instanceof Player) {
             Player p = (Player) sender;
-            if(cmd.getName().equalsIgnoreCase("ls") && p.hasPermission("LobbySelector.ls")) {
-            	p.sendMessage(ChatColor.GOLD + "You have given yourself the " + ChatColor.YELLOW + " LobbySelector Tool");
-            	p.getInventory().setItem(8, lobbySelector());
-            }
-        }
-        return true;
-    }
-	
+            if(cmd.getName().equalsIgnoreCase("ls")) {
+            	if(args.length == 0){
+            	   p.sendMessage(pre1);
+            	   p.sendMessage(pColor + "/ls - " + dColor + "Displays this screen");
+                   p.sendMessage(pColor + "/ls tool - " + dColor + "Gives you the LobbySelector Tool");
+                   p.sendMessage(pre2);
+            	
+            } else { if(args[0].equalsIgnoreCase("tool") && p.hasPermission("LobbySelector.ls")){
+            		p.sendMessage(ChatColor.GOLD + "You have given yourself the " + ChatColor.YELLOW + " LobbySelector Tool");
+            		p.getInventory().setItem(8, lobbySelector());
+            	}
+            	else if(args[0].equalsIgnoreCase("reload") && p.isOp() && p.hasPermission("LobbySelector.reload")){
+            		Bukkit.getPluginManager().disablePlugin(this);
+            		Bukkit.getPluginManager().enablePlugin(this);
+            		sender.sendMessage(ChatColor.GREEN + "Reload Complete");
+            		}
+            	}
+            } 
+		}
+		return true;
+	}
 	 
 	 
 	public ItemStack lobbySelector(){
@@ -81,7 +102,7 @@ public class LobbySelector extends JavaPlugin implements Listener {
 			 ItemStack spawnItem = new ItemStack(Material.COMPASS);
 			 ItemMeta im =  spawnItem.getItemMeta();
 			 im.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Lobby Selector (Right Click)");
-			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector", ChatColor.GRAY + "If you lose the Lobby Selector ", ChatColor.GRAY + "Type /ls "));
+			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Lobby Selector", ChatColor.GRAY + "If you lose the Lobby Selector ", ChatColor.GRAY + "Type /ls tool "));
 			 spawnItem.setItemMeta(im);
 			 player.getInventory().setItem(8, spawnItem);
 			 }
