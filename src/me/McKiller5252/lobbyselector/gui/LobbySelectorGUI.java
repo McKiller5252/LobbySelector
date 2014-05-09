@@ -28,11 +28,12 @@ public class LobbySelectorGUI implements Listener {
 	
 	private ItemStack a, b, c, h, i, j, k,  g, d, e, f, l, p, r, s, t;
 
+	public ChatColor under = ChatColor.UNDERLINE;
 	
 	public LobbySelectorGUI(Plugin m) {
 		
 		//Main Inv
-		inv = Bukkit.getServer().createInventory(null, 9, ChatColor.DARK_RED + "Lobby Selector");
+		inv = Bukkit.getServer().createInventory(null, 9, ChatColor.MAGIC + "h " +  ChatColor.DARK_RED + under.toString() + "Lobby Selector" + ChatColor.RESET + ChatColor.MAGIC + " h");
 		
 		a = createItem(Material.GRASS, ChatColor.GREEN + "Spawn");
 		b = createItem(Material.STONE, ChatColor.AQUA + "Plot");
